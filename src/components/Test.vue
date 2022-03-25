@@ -1,26 +1,6 @@
 <template>
-<div>
-    <div v-text="title"></div>
-    <div v-if="showName">
-    <p>{{user.firstName}}</p>
-    </div>
-    <div v-else>
-        <p>No puedo mostrar nada mi pez</p>
-    </div>
-    <hr>
-    <ul>
-        <li v-for="task in tasks" :key="task">
-        {{task.title}}
-        </li>
-    </ul>
-    <hr>
-    <div>
-        <input type="text" v-model="user.firstName">
-        <button type="button" name="button" v-on:click="saludar(user.firstName)">
-            CLICK ME
-        </button>
-        <input type="text" v-on:keyup.enter="typedEnter">
-    </div>
+<div class="test">
+    {{msg}}
 </div>
 </template>
 
@@ -49,10 +29,24 @@ export default {
        typedEnter(){
            console.log("Dio un enter");
        }
-   }
+    },
+        computed: {
+            fullName(){
+                return `${this.user.firstName} ${this.user.lastName}`
+            }
+        },
+        props: {
+            msg: {
+                type: String,
+                default: 'Mensaje por defecto'
+            }
+        } 
 }
 </script>
 
 <style media="screen">
+    .test {
+        background-color: blue;
+    }
 
 </style>
